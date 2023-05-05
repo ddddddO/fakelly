@@ -6,6 +6,7 @@ module Lib
 import System.Directory
 
 ls' :: [String] -> IO ()
+ls' [] = putStrLn "Specify directory."
 ls' args = do
   dirs <- ls $ head args
   mapM_ putStrLn dirs
@@ -16,6 +17,7 @@ ls dir = do
   return dirs
 
 tree' :: [String] -> IO ()
+tree' [] = putStrLn "Specify directory."
 tree' args = do
   tree $ head args
 
