@@ -2,9 +2,9 @@ module Tree
   ( tree'
   ) where
 
-import System.Directory
+import           System.Directory
 
-import Ls
+import           Ls
 
 tree' :: [String] -> IO ()
 tree' [] = putStrLn "Specify directory."

@@ -3,7 +3,7 @@ module Ls
   , ls
   ) where
 
-import System.Directory
+import           System.Directory
 
 ls' :: [String] -> IO ()
 ls' [] = putStrLn "Specify directory."
