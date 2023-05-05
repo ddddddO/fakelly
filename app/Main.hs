@@ -2,7 +2,8 @@ module Main (main) where
 
 import System.Environment
 
-import Lib
+import Ls
+import Tree
 
 command :: String -> [String] -> IO ()
 command "ls" = ls'

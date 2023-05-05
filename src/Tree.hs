@@ -1,20 +1,10 @@
-module Lib
-  ( ls'
-  , tree'
+module Tree
+  ( tree'
   ) where
 
 import System.Directory
 
-ls' :: [String] -> IO ()
-ls' [] = putStrLn "Specify directory."
-ls' args = do
-  dirs <- ls $ head args
-  mapM_ putStrLn dirs
-
-ls :: String -> IO [String]
-ls dir = do
-  dirs <- getDirectoryContents dir
-  return dirs
+import Ls
 
 tree' :: [String] -> IO ()
 tree' [] = putStrLn "Specify directory."
