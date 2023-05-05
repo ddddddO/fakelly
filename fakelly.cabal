@@ -27,6 +27,7 @@ library
   exposed-modules:
       Ls
       Tree
+      Wc
   other-modules:
       Paths_fakelly
   hs-source-dirs:
