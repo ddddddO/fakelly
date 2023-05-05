@@ -93,12 +93,12 @@ isLetter x =
 keyword :: [Char] -> Maybe Token
 keyword x =
   case x of
-    "let" -> Just (Token LET x)
-    "true" -> Just (Token TRUE x)
-    "false" -> Just (Token FALSE x)
-    "if" -> Just (Token IF x)
-    "else" -> Just (Token ELSE x)
-    "return" -> Just (Token RETURN x)
+    "let"     -> Just (Token LET x)
+    "true"    -> Just (Token TRUE x)
+    "false"   -> Just (Token FALSE x)
+    "if"      -> Just (Token IF x)
+    "else"    -> Just (Token ELSE x)
+    "return"  -> Just (Token RETURN x)
     otherwise -> Just (Token IDENT x)
 
 assignOrEqual :: [Char] -> (Maybe Token, [Char])
@@ -110,7 +110,7 @@ assignOrEqual (x:xs) =
   let (x':xs') = xs
       target = [x] ++ [x']
   in case target of
-    "==" -> (Just (Token EQ_ target), xs')
+    "=="      -> (Just (Token EQ_ target), xs')
     otherwise -> (Just (Token ASSIGN [x]), xs)
 
 bangOrNotEqual :: [Char] -> (Maybe Token, [Char])
@@ -122,5 +122,5 @@ bangOrNotEqual (x:xs) =
   let (x':xs') = xs
       target = [x] ++ [x']
   in case target of
-    "!=" -> (Just (Token NOT_EQ target), xs')
+    "!="      -> (Just (Token NOT_EQ target), xs')
     otherwise -> (Just (Token BANG [x]), xs)
