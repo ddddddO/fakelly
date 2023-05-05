@@ -1,19 +1,23 @@
 module Lib
   ( ls'
-  , tree
+  , tree'
   ) where
 
 import System.Directory
 
-ls' :: String -> IO ()
-ls' dir = do
-  dirs <- ls dir
+ls' :: [String] -> IO ()
+ls' args = do
+  dirs <- ls $ head args
   mapM_ putStrLn dirs
 
 ls :: String -> IO [String]
 ls dir = do
   dirs <- getDirectoryContents dir
   return dirs
+
+tree' :: [String] -> IO ()
+tree' args = do
+  tree $ head args
 
 tree :: String -> IO ()
 tree path = do
