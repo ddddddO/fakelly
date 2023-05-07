@@ -1,6 +1,6 @@
 -- 字句解析: ソースからトークン列へ変換する。字句解析器
 
-module Lexer
+module Interpreter.Lexer
   ( lexer
   ) where
 
