@@ -17,13 +17,17 @@ tree :: String -> IO ()
 tree path = do
   printBranch path
   paths <- ls path
-  let dirs = map (\p -> path ++ "/" ++ p) $ filter (\p -> not (p == path || p == "." || p == "..")) paths
+  let dirs = genDirs paths
   mapM_ (\p -> do
           existsDir <- doesDirectoryExist p
           case existsDir of
             True  -> tree p
             False -> printBranch p
         ) dirs
+  where
+    genDirs :: [String] -> [String]
+    genDirs = map (\p -> path ++ "/" ++ p) . filter (\p -> not $ p `elem` [path, ".", ".."])
+
 
 printBranch :: String -> IO ()
 printBranch = putStrLn . branchPath
