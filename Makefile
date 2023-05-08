@@ -5,6 +5,9 @@
 format:
 	stylish-haskell app/Main.hs
 
+test:
+	stack test
+
 build:
 	stack build
 
