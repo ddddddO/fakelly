@@ -29,12 +29,14 @@ printBranch :: String -> IO ()
 printBranch = putStrLn . branchPath
 
 branchPath :: String -> String
-branchPath path =
-  let ss = splitOn "/" path
-      len = length ss
-  in case len of
-      1 -> head ss
-      _ -> (take ((len-1)*4) $ repeat ' ') ++ last ss
+branchPath path = branch
+  where
+    branch :: String
+    branch = (take ((len-1)*4) $ repeat ' ') ++ last ss
+
+    ss = splitOn "/" path
+    len = length ss
+
 
 {-
 
