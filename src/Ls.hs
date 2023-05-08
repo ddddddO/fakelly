@@ -5,6 +5,7 @@ module Ls
 
 import           System.Directory
 
+-- fakelly ls .
 ls' :: [String] -> IO ()
 ls' [] = putStrLn "Specify directory."
 ls' args = do

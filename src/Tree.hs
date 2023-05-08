@@ -3,9 +3,11 @@ module Tree
   ) where
 
 import           System.Directory
+import           Data.List.Split
 
 import           Ls
 
+-- fakelly tree gtree
 tree' :: [String] -> IO ()
 tree' [] = putStrLn "Specify directory."
 tree' args = do
@@ -13,23 +15,38 @@ tree' args = do
 
 tree :: String -> IO ()
 tree path = do
-  putStrLn path
+  printBranch path
   paths <- ls path
   let dirs = map (\p -> path ++ "/" ++ p) $ filter (\p -> not (p == path || p == "." || p == "..")) paths
   mapM_ (\p -> do
           existsDir <- doesDirectoryExist p
           case existsDir of
             True  -> tree p
-            False -> putStrLn p
+            False -> printBranch p
         ) dirs
--- ghci> :l Main.hs
--- ghci> tree "gtree"
--- gtree
--- gtree/tree.go
--- gtree/testdata
--- gtree/testdata/sample2.md
--- gtree/testdata/sample1.md
--- gtree/cmd
--- gtree/cmd/gtree
--- gtree/cmd/gtree/main.go
--- gtree/makefile
+
+printBranch :: String -> IO ()
+printBranch = putStrLn . branchPath
+
+branchPath :: String -> String
+branchPath path =
+  let ss = splitOn "/" path
+      len = length ss
+  in case len of
+      1 -> head ss
+      _ -> (take ((len-1)*4) $ repeat ' ') ++ last ss
+
+{-
+
+$ fakelly tree gtree
+gtree
+    tree.go
+    testdata
+        sample2.md
+        sample1.md
+    cmd
+        gtree
+            main.go
+    makefile
+
+-}

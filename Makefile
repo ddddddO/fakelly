@@ -15,7 +15,6 @@ build:
 install:
 	 stack install
 
-# makeに良い感じに引数渡せないか
 fakelly:
 	stack exec fakelly ls .
 
