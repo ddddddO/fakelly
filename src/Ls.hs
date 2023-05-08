@@ -5,9 +5,12 @@ module Ls
 
 import           System.Directory
 
+-- fakelly ls
 -- fakelly ls .
 ls' :: [String] -> IO ()
-ls' [] = putStrLn "Specify directory."
+ls' [] = do
+  dirs <- ls "."
+  mapM_ putStrLn dirs
 ls' args = do
   dirs <- ls $ head args
   mapM_ putStrLn dirs
