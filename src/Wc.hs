@@ -1,9 +1,12 @@
 module Wc
-  ( wc
+  ( wc'
   ) where
 
 -- fakelly ls . | fakelly wc
-wc :: [String] -> IO ()
-wc args = do
+wc' :: [String] -> IO ()
+wc' args = do
   stdin <- getContents
-  print $ length $ lines stdin
+  wc stdin
+
+wc :: String -> IO ()
+wc = print . length . lines
