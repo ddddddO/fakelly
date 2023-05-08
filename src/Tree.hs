@@ -7,9 +7,10 @@ import           Data.List.Split
 
 import           Ls
 
--- fakelly tree gtree
+-- fakelly tree
+-- fakelly tree .
 tree' :: [String] -> IO ()
-tree' [] = putStrLn "Specify directory."
+tree' [] = tree "."
 tree' args = do
   tree $ head args
 
