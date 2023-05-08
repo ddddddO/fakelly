@@ -11,8 +11,8 @@ ls' :: [String] -> IO ()
 ls' [] = do
   dirs <- ls "."
   mapM_ putStrLn dirs
-ls' args = do
-  dirs <- ls $ head args
+ls' (path:remaining) = do -- TODO: 引数に指定した複数のパスをtreeするのもいいかも
+  dirs <- ls path
   mapM_ putStrLn dirs
 
 ls :: String -> IO [String]

@@ -11,8 +11,7 @@ import           Ls
 -- fakelly tree .
 tree' :: [String] -> IO ()
 tree' [] = tree "."
-tree' args = do
-  tree $ head args
+tree' (path:remaining) = tree path -- TODO: 引数に指定した複数のパスをtreeするのもいいかも
 
 tree :: String -> IO ()
 tree path = do
