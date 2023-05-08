@@ -2,15 +2,15 @@ module Tree
   ( tree'
   ) where
 
-import           System.Directory
 import           Data.List.Split
+import           System.Directory
 
 import           Ls
 
 -- fakelly tree
 -- fakelly tree .
 tree' :: [String] -> IO ()
-tree' [] = tree "."
+tree' []               = tree "."
 tree' (path:remaining) = tree path -- TODO: 引数に指定した複数のパスをtreeするのもいいかも
 
 tree :: String -> IO ()
