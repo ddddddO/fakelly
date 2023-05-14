@@ -34,7 +34,7 @@ branchPath :: String -> String
 branchPath path = branch
   where
     branch :: String
-    branch = (take ((len-1)*4) $ repeat ' ') ++ last ss
+    branch = (take ((len-1)*4) $ repeat ' ') <> last ss
 
     ss = splitOn "/" path
     len = length ss
