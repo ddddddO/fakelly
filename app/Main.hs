@@ -1,5 +1,6 @@
 module Main (main) where
 
+import           Data.Char
 import           System.Environment
 
 import           Ls
@@ -18,3 +19,18 @@ main :: IO ()
 main = do
   (cmd:args) <- getArgs
   dispatch cmd args
+
+
+----------------------------------
+
+-- ghci> lazyIO
+-- aArRtTfFkK
+lazyIO :: IO ()
+lazyIO = do
+  xs <- getContents
+  putStrLn $ map toUpper xs
+
+-- ghci> lazyIO'
+-- aAfFrRkKlL
+lazyIO' :: IO ()
+lazyIO' = interact $ map toUpper
