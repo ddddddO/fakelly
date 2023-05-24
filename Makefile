@@ -2,6 +2,7 @@
 # 	$ ghci
 # 	ghci> :l app/Main.hs src/Lib.hs
 # 	ghci> ls' "."
+
 format:
 	stylish-haskell app/Main.hs
 
