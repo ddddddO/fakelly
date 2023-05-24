@@ -4,7 +4,7 @@ module Cat
 
 -- fakelly cat Makefile README.md
 cat' :: [String] -> IO ()
-cat' []       = return ()
+cat' []               = return ()
 cat' (path:remaining) = do
   readFile path >>= putStrLn
   cat' remaining
