@@ -21,22 +21,20 @@ tree path = do
           case existsDir of
             True  -> tree p
             False -> printBranch p
-        ) . genDirs
+        ) . genDirs path
   where
-    genDirs :: [String] -> [String]
-    genDirs = map (\p -> path ++ "/" ++ p) . filter (\p -> not $ p `elem` [path, ".", ".."])
+    genDirs :: String -> [String] -> [String]
+    genDirs current paths = fmap (\p -> current <> "/" <> p) $ filter (\p -> not $ p `elem` [current, ".", ".."]) $ paths
 
 printBranch :: String -> IO ()
 printBranch = putStrLn . branchPath
 
 branchPath :: String -> String
-branchPath path = branch
+branchPath path =
+  (take (len path) $ repeat ' ') <> (last $ split path)
   where
-    branch :: String
-    branch = (take ((len-1)*4) $ repeat ' ') <> last ss
-
-    ss = splitOn "/" path
-    len = length ss
+    split = splitOn "/"
+    len p = ((length . split $ p) - 1) * 4
 
 
 {-
