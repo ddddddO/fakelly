@@ -18,13 +18,13 @@ tree path = do
   printBranch path
   ls path >>= mapM_ (\p -> do
           existsDir <- doesDirectoryExist p
-          case existsDir of
-            True  -> tree p
-            False -> printBranch p
-        ) . genDirs path
+          if existsDir
+            then tree p
+            else printBranch p
+        ) . listDirs path
   where
-    genDirs :: String -> [String] -> [String]
-    genDirs current paths = fmap (\p -> current <> "/" <> p) $ filter (\p -> not $ p `elem` [current, ".", ".."]) $ paths
+    listDirs :: String -> [String] -> [String]
+    listDirs current paths = fmap (\p -> current <> "/" <> p) $ filter (\p -> p `notElem` [current, ".", ".."]) $ paths
 
 printBranch :: String -> IO ()
 printBranch = putStrLn . branchPath
