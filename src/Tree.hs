@@ -16,13 +16,12 @@ tree' args = mapM_ tree args
 tree :: String -> IO ()
 tree path = do
   printBranch path
-  paths <- ls path
-  mapM_ (\p -> do
+  ls path >>= mapM_ (\p -> do
           existsDir <- doesDirectoryExist p
           case existsDir of
             True  -> tree p
             False -> printBranch p
-        ) $ genDirs paths
+        ) . genDirs
   where
     genDirs :: [String] -> [String]
     genDirs = map (\p -> path ++ "/" ++ p) . filter (\p -> not $ p `elem` [path, ".", ".."])
