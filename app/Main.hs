@@ -15,7 +15,7 @@ dispatch "wc"   = wc'
 dispatch "cat"  = cat'
 -- TODO: 以下で、入力をパースして何かできるようにしたい。例えば、「stack exec fakelly 'ls . | wc'」が評価できるような。
 --       インタプリタ作るような？ https://github.com/ddddddO/monkey たぶんこの本が役立ちそう
-dispatch xxx    = \_ -> putStrLn $ "'" ++ xxx ++ "'" ++ " is not implemented."
+dispatch xxx    = \_ -> putStrLn $ "'" <> xxx <> "'" <> " is not implemented."
 
 main :: IO ()
 main = do
