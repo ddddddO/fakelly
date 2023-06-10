@@ -28,6 +28,7 @@ library
       Cat
       Interpreter.Lexer
       Ls
+      Rpn
       Tree
       Wc
   other-modules:
